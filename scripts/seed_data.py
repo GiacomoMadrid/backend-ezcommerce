@@ -15,6 +15,7 @@ from epica4.models import Etiqueta
 Facultad.objects.all().delete()
 EscuelaProfesional.objects.all().delete()
 Etiqueta.objects.all().delete()
+Usuario.objects.all().delete()
 
 # Crear Facultades
 facultad1 = Facultad.objects.create(codigo="01", nombre="Facultad de Medicina - San Fernando", siglas="FMSF") #
@@ -51,3 +52,21 @@ etiqueta4 = Etiqueta.objects.create(nombre="Asesorías", descripcion="Asesorías
 
 
 print("Datos iniciales insertados con éxito.")
+
+
+if not Usuario.objects.filter(email="admin@admin.com").exists():
+    user = Usuario.objects.create_superuser(
+        nombres="Admin",
+        username = "admin@admin.com",
+        email = "admin@admin.com",
+        id_escuela = escuela2,
+        password = "Generamiau1604#",
+        
+    )
+
+    print("---------------------------------------")
+    print("Super usuario creado: ID = ", user.id)
+    print("Credenciales:")
+    print("Correo: = ", user.email)
+    print("Contraseña: = Generamiau1604#")
+    print("---------------------------------------")
